@@ -68,5 +68,4 @@ public class ArchiveHandlerTest {
         Assertions.assertEquals(expected,
                 archiveHandler.probeContentAndUnarchive(openArchive(TEST_DIR + "MTAR.tar.bz2")));
     }
-
 }

@@ -10,18 +10,21 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
 
 import static ai.datahunters.md.server.server.testutils.IOHelper.openArchive;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
 public class ExtractedFilesValidation {
-   private String TEST_DIR = "uploadendpointtest/";
+    private String TEST_DIR = "uploadendpointtest/";
+  
     FileService fileService = mock(FileService.class);
     ArchiveHandler archiveHandler = new ArchiveHandler(Paths.get("mock"),fileService);
 
@@ -38,8 +41,7 @@ public class ExtractedFilesValidation {
                DigestUtils.sha256Hex(new FileInputStream(testDir.resolve("smile.png").toFile())));
        FileUtils.deleteDirectory(testDir.toFile());
    }
-
-
+  
    @Test
    public void checkDirCleanup() throws IOException {
       Path testDir = createTestDir();
@@ -51,7 +53,7 @@ public class ExtractedFilesValidation {
       Assertions.assertFalse(testDir.toFile().exists());
 
    }
-
+  
    private Path createTestDir() throws IOException {
       Path testDir = Paths.get(Long.toUnsignedString(new Random().nextLong()));
       return Files.createDirectory(testDir);
